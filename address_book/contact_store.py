@@ -19,6 +19,13 @@ class ContactStore(ABC):
 
         For a quick lookup, use the id returned from add() as the key. Else use the full name.'''
         pass
+    
+    @abstractmethod
+    def find_id(self, name: str) -> int:
+        '''Returns the ID that corresponds to a stored contact.
+        '''
+        pass
+
 
 class InMemoryContactStore(ContactStore):
     '''InMemoryContactStore is a ContactStore that is kept in memory.
@@ -58,3 +65,12 @@ class InMemoryContactStore(ContactStore):
                     return contact
             return None
         return None
+    
+    def find_id(self, name: str) -> int:
+        for id, contact in self._items.items():
+            if name == contact.name():
+                return id
+        return None 
+    
+    def __str__(self):
+        return '\n'.join(str(contact) for contact in self._items.values())
