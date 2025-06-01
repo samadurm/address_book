@@ -27,3 +27,11 @@ class Contact:
     def __repr__(self):
         return (f"Contact(name={self._name!r}, phone_number={self._phone_number!r}, "
             f"email={self._email!r}, address={self._address!r})")
+
+    def __str__(self):
+        return (
+            f"Name: {self._name}\n"
+            f"Phone: {self._phone_number}\n"
+            f"Email: {self._email}\n"
+            f"Address: {self._address}"
+        )
