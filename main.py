@@ -1,11 +1,19 @@
 from address_book.address_book import AddressBook
+from address_book.contact import Contact
 
 def print_contact(address_book: AddressBook):
     print(address_book)
 
 def add_contact(address_book: AddressBook):
-    print('add contact called')
-    pass
+    while not (name := input("Enter name: ").strip()):
+        print("A new contact needs at least a valid name")
+
+    phone = input("Enter phone number: ")
+    email = input("Enter email: ")
+    address = input("Enter address: ")
+
+    contact = Contact(name=name, phone_number=phone, email=email, address=address)
+    address_book.add(contact=contact)
 
 def edit_contact(address_book: AddressBook):
     print('edit contact called')
